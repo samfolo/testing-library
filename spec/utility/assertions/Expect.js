@@ -43,6 +43,20 @@ class Expect {
 
     console.log('F'); return false;
   }
+
+  toAllBe(actual) {
+    validateAssertion(this.expected, actual);
+    let result = true;
+    try {
+      this.expected.forEach(el => {
+        result = result && el === actual;
+      });
+      if (result) { console.log('.'); return true; }
+    } catch (e) {
+      throw new Error('Invalid assertion')
+    }
+    console.log('F'); return false;
+  }
 }
 
 const expect = (expected) => {
