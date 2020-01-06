@@ -1,6 +1,6 @@
 class It {
   static assert = (description, assertion) => {
-    console.log('  [it] ' + description + ': ');
+    console.log('  it ' + description + ': ');
     assertion();
   };
 }

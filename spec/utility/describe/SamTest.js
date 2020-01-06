@@ -1,7 +1,8 @@
 class SamTest {
   static describe = (description, assertion) => {
-    console.log('[Describe] ' + description + ": ");
+    console.log('Describe ' + description + ": ");
     assertion();
+    console.log(' ')
   };
 }
 

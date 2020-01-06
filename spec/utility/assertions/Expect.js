@@ -6,26 +6,18 @@ class Expect {
   toBe = actual => {
     validateAssertion(this.expected, actual);
     if (this.expected === actual) {
-      console.log(`    expected ${this.expected} to be ${actual} :: Test Passed`);
-      console.log(' ');
-      return true;
+      console.log(`    expected ${this.expected} to be ${actual} :: Test Passed`); return true;
     } else {
-      console.log(`    expected ${this.expected} to be ${actual} :: Test Failed`);
-      console.log(' ');
-      return false;
+      console.log(`    expected ${this.expected} to be ${actual} :: Test Failed`); return false;
     };
   }
 
   toEqual = actual => {
     validateAssertion(this.expected, actual);
     if (this.expected == actual) {
-      console.log(`    expected ${this.expected} to equal ${actual} :: Test Passed`);
-      console.log(' ');
-      return true;
+      console.log(`    expected ${this.expected} to equal ${actual} :: Test Passed`); return true;
     } else {
-      console.log(`    expected ${this.expected} to equal ${actual} :: Test Failed`);
-      console.log(' ');
-      return false;
+      console.log(`    expected ${this.expected} to equal ${actual} :: Test Failed`); return false;
     };
   }
 
@@ -38,18 +30,15 @@ class Expect {
           result = result && this.expected.includes(el);
         });
         if (result) { 
-          console.log(`    expected ${this.expected} to contain ${actual} :: Test Passed`); 
-          console.log(' '); return true; };
+          console.log(`    expected ${this.expected} to contain ${actual} :: Test Passed`); return true;
+        }
       } catch (e) {
-        throw new Error('Invalid assertion')
+        throw new Error('Invalid assertion');
       }
     } else if (this.expected.includes(actual)) { 
-      console.log(`    expected ${mapArrayToString(this.expected)} to contain ${actual} :: Test Passed`); 
-      console.log(' '); return true;
+      console.log(`    expected ${mapArrayToString(this.expected)} to contain ${actual} :: Test Passed`); return true;
     };
-
-    console.log(`    expected ${mapArrayToString(this.expected)} to contain ${actual} :: Test Failed`); 
-    console.log(' '); return false;
+    console.log(`    expected ${mapArrayToString(this.expected)} to contain ${actual} :: Test Failed`); return false;
   }
 
   toAllBe(actual) {
@@ -60,13 +49,21 @@ class Expect {
         result = result && el === actual;
       });
       if (result) { 
-        console.log(`    expected ${mapArrayToString(this.expected)} to all be ${actual} :: Test Passed`); 
-        console.log(' '); return true; }
+        console.log(`    expected ${mapArrayToString(this.expected)} to all be ${actual} :: Test Passed`); return true;
+      }
     } catch (e) {
-      throw new Error('Invalid assertion')
+      throw new Error('Invalid assertion');
     }
-    console.log(`    expected ${mapArrayToString(this.expected)} to all be ${actual} :: Test Failed`); 
-    console.log(' '); return false;
+    console.log(`    expected ${mapArrayToString(this.expected)} to all be ${actual} :: Test Failed`); return false;
+  }
+
+  toThrowError() {
+    try {
+      this.expected();
+      console.log(`    expected function to throw an error :: Test Failed`); return true;
+    } catch (e) {
+      console.log(`    expected function to throw an error :: Test Passed`); return false;
+    }
   }
 }
 
