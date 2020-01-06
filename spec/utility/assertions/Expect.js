@@ -4,6 +4,9 @@ class Expect {
   }
 
   toBe = (actual) => {
+    if (!actual && !this.expected) { throw new Error('No assertion made') };
+    if (!actual) { throw new Error('No actual value given in this assertion') };
+    if (!this.expected) { throw new Error('No expected value given in this assertion') };
     if (this.expected === actual) {
       console.log('.');
       return true;
