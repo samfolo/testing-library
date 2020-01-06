@@ -6,10 +6,12 @@ class Expect {
   toBe = actual => {
     validateAssertion(this.expected, actual);
     if (this.expected === actual) {
-      console.log('.');
+      console.log(`    expected ${this.expected} to be ${actual} :: Test Passed`);
+      console.log(' ');
       return true;
     } else {
-      console.log('F')
+      console.log(`    expected ${this.expected} to be ${actual} :: Test Failed`);
+      console.log(' ');
       return false;
     };
   }
@@ -17,10 +19,12 @@ class Expect {
   toEqual = actual => {
     validateAssertion(this.expected, actual);
     if (this.expected == actual) {
-      console.log('.');
+      console.log(`    expected ${this.expected} to equal ${actual} :: Test Passed`);
+      console.log(' ');
       return true;
     } else {
-      console.log('F')
+      console.log(`    expected ${this.expected} to equal ${actual} :: Test Failed`);
+      console.log(' ');
       return false;
     };
   }
@@ -33,15 +37,19 @@ class Expect {
         actual.forEach(el => {
           result = result && this.expected.includes(el);
         });
-        if (result) { console.log('.'); return true; }
+        if (result) { 
+          console.log(`    expected ${this.expected} to contain ${actual} :: Test Passed`); 
+          console.log(' '); return true; };
       } catch (e) {
         throw new Error('Invalid assertion')
       }
     } else if (this.expected.includes(actual)) { 
-      console.log('.'); return true;
+      console.log(`    expected ${mapArrayToString(this.expected)} to contain ${actual} :: Test Passed`); 
+      console.log(' '); return true;
     };
 
-    console.log('F'); return false;
+    console.log(`    expected ${mapArrayToString(this.expected)} to contain ${actual} :: Test Failed`); 
+    console.log(' '); return false;
   }
 
   toAllBe(actual) {
@@ -51,11 +59,14 @@ class Expect {
       this.expected.forEach(el => {
         result = result && el === actual;
       });
-      if (result) { console.log('.'); return true; }
+      if (result) { 
+        console.log(`    expected ${mapArrayToString(this.expected)} to all be ${actual} :: Test Passed`); 
+        console.log(' '); return true; }
     } catch (e) {
       throw new Error('Invalid assertion')
     }
-    console.log('F'); return false;
+    console.log(`    expected ${mapArrayToString(this.expected)} to all be ${actual} :: Test Failed`); 
+    console.log(' '); return false;
   }
 }
 
