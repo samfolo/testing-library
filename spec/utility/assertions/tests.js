@@ -18,3 +18,15 @@ expect(1 + 1).toEqual(3) // should be false
 try { expect().toEqual('x') } catch (e) { console.log('error as expected, F'); } // should throw error NO_ACTUAL
 try { expect({ a: 'b'}).toEqual() } catch (e) { console.log('error as expected, F'); } // should throw error NO_EXPECTED
 try { expect().toEqual() } catch (e) { console.log('error, as expected, F'); } // should throw error NO_ASSERTION
+
+// 'toContain':
+
+expect([3, 2, 1]).toContain([1, 2, 3]); // should be true
+expect(['4', '3', '2', '1']).toContain('4'); // should be true
+expect(['4', '3', '2', '1']).toContain(4); // should be false
+expect([(() => { return 4 * 4})(), '6']).toContain(16); // should be true
+
+try { expect(1, 2, 3, 4).toContain(3) } catch (e) { console.log('error, as expected, F'); } // should throw error INVALID_ASSERTION
+try { expect().toContain('x') } catch (e) { console.log('error as expected, F'); } // should throw error NO_ACTUAL
+try { expect({ a: 'b'}).toContain() } catch (e) { console.log('error as expected, F'); } // should throw error NO_EXPECTED
+try { expect().toContain() } catch (e) { console.log('error, as expected, F'); } // should throw error NO_ASSERTION

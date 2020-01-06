@@ -4,9 +4,7 @@ class Expect {
   }
 
   toBe = actual => {
-    if (!actual && !this.expected) { throw new Error('No assertion made') };
-    if (!actual) { throw new Error('No actual value given in this assertion') };
-    if (!this.expected) { throw new Error('No expected value given in this assertion') };
+    validateAssertion(this.expected, actual);
     if (this.expected === actual) {
       console.log('.');
       return true;
@@ -17,9 +15,7 @@ class Expect {
   }
 
   toEqual = actual => {
-    if (!actual && !this.expected) { throw new Error('No assertion made') };
-    if (!actual) { throw new Error('No actual value given in this assertion') };
-    if (!this.expected) { throw new Error('No expected value given in this assertion') };
+    validateAssertion(this.expected, actual);
     if (this.expected == actual) {
       console.log('.');
       return true;
@@ -27,6 +23,25 @@ class Expect {
       console.log('F')
       return false;
     };
+  }
+
+  toContain = actual => {
+    validateAssertion(this.expected, actual);
+    let result = true;
+    if (typeof actual === 'object') {
+      try {
+        actual.forEach(el => {
+          result = result && this.expected.includes(el);
+        });
+        if (result) { console.log('.'); return true; }
+      } catch (e) {
+        throw new Error('Invalid assertion')
+      }
+    } else if (this.expected.includes(actual)) { 
+      console.log('.'); return true;
+    };
+
+    console.log('F'); return false;
   }
 }
 
