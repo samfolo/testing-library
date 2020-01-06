@@ -1,0 +1,22 @@
+{
+  "name": "testing-library",
+  "version": "1.0.0",
+  "description": "A testing library, understanding testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/samfolo/testing-library.git"
+  },
+  "author": "Sam Folorunsho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samfolo/testing-library/issues"
+  },
+  "homepage": "https://github.com/samfolo/testing-library#readme",
+  "dependencies": {
+    "jasmine": "^3.5.0"
+  }
+}
