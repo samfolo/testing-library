@@ -30,7 +30,7 @@ class Not {
           result = result && this.expected.includes(el);
         });
         if (!result) { 
-          console.log(`    expected ${this.expected} not to contain ${actual} :: Test Passed`); return true;
+          console.log(`    expected ${mapArrayToString(this.expected)} not to contain ${actual} :: Test Passed`); return true;
         }
       } catch (e) {
         throw new Error('Invalid assertion');

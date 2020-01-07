@@ -5,9 +5,15 @@ const validateAssertion = (expected, actual) => {
 }
 
 const mapArrayToString = (arr) => {
-  if (arr.length > 1) {
+  if (!arr) {
+    return arr;
+  }
+
+  if (typeof arr === 'object' && arr.length < 1) {
+    return JSON.stringify(arr);
+  } else if (typeof arr === 'object' && arr.length > 1) {
     return '[' + arr.join(', ') + ']';
   } else {
-    return `${arr.pop}`;
+    try { return `${arr.pop}` } catch (e) { return arr };
   } 
 }
