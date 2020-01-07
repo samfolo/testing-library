@@ -68,3 +68,24 @@ describe('toThrowError', () => {
 try { expect().toAllBe('number') } catch (e) { console.log('[Caught Error], Invalid assertion handled'); }
 try { expect(...Array(10)).toAllBe() } catch (e) { console.log('[Caught Error], Invalid assertion handled'); }
 try { expect().toAllBe() } catch (e) { console.log('[Caught Error], Invalid assertion handled'); }
+
+describe('toBeTruthy()', () => {
+  it('returns true when passed a truthy value', () => {
+    expect(' ').toBeTruthy();
+    expect(10).toBeTruthy();
+    expect('\'false\'').toBeTruthy();
+    expect(null).not.toBeTruthy();
+    expect(false).not.toBeTruthy();
+  });
+});
+
+describe('toBeFalsy()', () => {
+  it('returns true when passed a truthy value', () => {
+    expect('').toBeFalsy()
+    expect(0).toBeFalsy();
+    expect(true).not.toBeFalsy();
+    expect(null).toBeFalsy();
+    expect('Sam' - 'Sam').toBeFalsy();
+    expect(undefined).toBeFalsy();
+  });
+});
