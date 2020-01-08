@@ -1,4 +1,4 @@
-SamTest.describe('test suite functions', () => {
+describe('test suite functions', () => {
   describe('toBe', () => {
     it('deeply compares (===) an actual and expected value', () => {
       expect(5).toBe(5);
@@ -82,7 +82,7 @@ SamTest.describe('test suite functions', () => {
 
   describe('toBeFalsy()', () => {
     it('returns true when passed a truthy value', () => {
-      expect('').toBeFalsy()
+      expect('').toBeFalsy();
       expect(0).toBeFalsy();
       expect(true).not.toBeFalsy();
       expect(null).toBeFalsy();
@@ -90,4 +90,85 @@ SamTest.describe('test suite functions', () => {
       expect(undefined).toBeFalsy();
     });
   });
+});
+
+let objA = {
+  name: 'this',
+  age: 'this',
+  date: 'this, too',
+  objectTwo: {
+    name: 'that',
+    age: 'that too'
+  }
+}
+
+let objB = {
+  name: 'this',
+  age: 'this',
+  date: 'this, too',
+  objectTwo: {
+    name: 'that',
+    age: 'that too'
+  }
+}
+
+let objC = {
+  name: 'this',
+  age: 'this',
+  date: 'this, too',
+  objectTwo: {
+    newName: 'that',
+    age: 'that too'
+  }
+}
+
+let objD = {
+  A: 'THIS', 
+  B: 'THIS',
+  C: 'THIS',
+  d: {
+    uno: 'sdfg',
+    dos: 'hjg',
+    tres: 'asdfg',
+    four: {
+      name: 'hello',
+      age: 'no',
+    },
+    onemore: 'this',
+    twomore: 'that',
+  },
+  e: {
+    F: 'DSFGHJ',
+    G: 'SFDGHGJ',
+  }
+}
+
+let objE = {
+  A: 'THIS', 
+  B: 'THIS',
+  C: 'THIS',
+  d: {
+    uno: 'sdfg',
+    dos: 'hjg',
+    tres: 'asdfg',
+    four: {
+      name: 'hello',
+      age: 'no',
+    },
+    WUNmore: 'this',
+    twomore: 'that',
+  },
+  e: {
+    F: 'DSFGHJ',
+    G: 'SFDGHGJ',
+  }
+}
+
+describe('toResemble', () => {
+  it('recursively compares all the keys between two objects', () => {
+    expect(objA).toResemble(objB);
+    expect(objA).not.toResemble(objC); // should fail
+    expect(objD).toResemble(objD);
+    expect(objD).not.toResemble(objE); // should fail
+  })
 });

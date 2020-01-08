@@ -82,6 +82,15 @@ class Expect {
       console.log(`    expected ${this.expected} to be falsy :: Test Failed`); return false;
     }
   }
+
+  toResemble = actual => {
+    try {
+      compareProperties(this.expected, actual);
+      console.log(`    expected both functions to deeply contain the same keys :: Test Passed`); return true;
+    } catch (e) {
+      console.log(`    expected both functions to deeply contain the same keys :: Test Failed`); return false;
+    }
+  }
 }
 
 const expect = (expected) => {

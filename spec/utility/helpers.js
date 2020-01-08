@@ -17,3 +17,29 @@ const mapArrayToString = (arr) => {
     try { return `${arr.pop}` } catch (e) { return arr };
   } 
 }
+
+const compareProperties = (expected, actual) => {
+  try {
+    let expectedKeys = Object.keys(expected);
+    let actualKeys = Object.keys(actual);
+
+    if (actualKeys.length === expectedKeys.length) {
+      // console.log(`expectedKeys: ${expectedKeys}, actualKeys: ${actualKeys}`)
+      let result = true;
+      expectedKeys.forEach(key => {
+        result = result && actual.hasOwnProperty(key);
+
+        if (result && typeof actual[key] === 'object') {
+          compareProperties(expected[key], actual[key]);
+        }
+        if (!result) {
+          throw Error
+        }
+      })
+    } else {
+      throw Error
+    }
+  } catch (e) {
+    throw Error
+  }
+}

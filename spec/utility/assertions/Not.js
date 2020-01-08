@@ -81,4 +81,13 @@ class Not {
       console.log(`    expected ${this.expected} not to be falsy :: Test Failed`); return false;
     }
   }
+
+  toResemble = actual => {
+    try {
+      compareProperties(this.expected, actual);
+      console.log(`    expected both functions not to deeply contain the same keys :: Test Failed`); return false;
+    } catch (e) {
+      console.log(`    expected both functions not to deeply contain the same keys :: Test Passed`); return true;
+    }
+  }
 }
