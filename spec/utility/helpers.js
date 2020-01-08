@@ -5,13 +5,11 @@ const validateAssertion = (expected, actual) => {
 }
 
 const mapArrayToString = (arr) => {
-  if (!arr) {
-    return arr;
-  }
+  if (!arr || typeof arr !== 'object') { return arr; }
 
-  if (typeof arr === 'object' && arr.length < 1) {
+  if (arr.length < 1) {
     return JSON.stringify(arr);
-  } else if (typeof arr === 'object' && arr.length > 1) {
+  } else if (arr.length > 1) {
     return '[' + arr.join(', ') + ']';
   } else {
     try { return `${arr.pop}` } catch (e) { return arr };
@@ -24,7 +22,6 @@ const compareProperties = (expected, actual) => {
     let actualKeys = Object.keys(actual);
 
     if (actualKeys.length === expectedKeys.length) {
-      // console.log(`expectedKeys: ${expectedKeys}, actualKeys: ${actualKeys}`)
       let result = true;
       expectedKeys.forEach(key => {
         result = result && actual.hasOwnProperty(key);

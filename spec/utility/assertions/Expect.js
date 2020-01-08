@@ -91,6 +91,14 @@ class Expect {
       console.log(`    expected both functions to deeply contain the same keys :: Test Failed`); return false;
     }
   }
+
+  toHaveLength = length => {
+    if (this.expected.length === length) {
+      console.log(`    expected ${mapArrayToString(this.expected)} to have length ${length} :: Test Passed`); return true;
+    } else {
+      console.log(`    expected ${mapArrayToString(this.expected)} to have length ${length} :: Test Failed`); return false;
+    }
+  }
 }
 
 const expect = (expected) => {

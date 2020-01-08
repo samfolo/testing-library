@@ -172,3 +172,11 @@ describe('toResemble', () => {
     expect(objD).not.toResemble(objE); // should fail
   })
 });
+
+describe('toHaveLength', () => {
+  it('validates the length of a string or object', () => {
+    expect([1, 2, 3]).toHaveLength(3);
+    expect('bubbles').toHaveLength(7);
+    expect([1, 2, 3, 5, 'thing']).not.toHaveLength(100);
+  })
+})

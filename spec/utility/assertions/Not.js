@@ -90,4 +90,12 @@ class Not {
       console.log(`    expected both functions not to deeply contain the same keys :: Test Passed`); return true;
     }
   }
+
+  toHaveLength = length => {
+    if (this.expected.length !== length) {
+      console.log(`    expected ${mapArrayToString(this.expected)} not to have length ${length} :: Test Passed`); return true;
+    } else {
+      console.log(`    expected ${mapArrayToString(this.expected)} not to have length ${length} :: Test Failed`); return false;
+    }
+  }
 }
